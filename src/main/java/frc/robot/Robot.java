@@ -100,7 +100,7 @@ public class Robot extends TimedRobot {
 
     processRobotModeChange(RobotMode.TELEOP);
 
-    logger.info ("Hi!");
+    logger.info ("Hello!");
   }
 
   /** This function is called periodically during operator control. */
