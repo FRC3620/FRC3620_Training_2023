@@ -98,9 +98,10 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    processRobotModeChange(RobotMode.TELEOP);
-  }
-
+    processRobotModeChange(RobotMode.TELEOP);  
+     logger.info ("Hi!");
+  }      
+    
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {}
