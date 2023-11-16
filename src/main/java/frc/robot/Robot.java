@@ -41,6 +41,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    logger.info ("Hi! RobotInit!!");
 
   }
 
@@ -64,6 +65,7 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
     processRobotModeChange(RobotMode.DISABLED);
+    logger.info ("Hi! DisableInit!!");
   }
 
   @Override
@@ -74,6 +76,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     processRobotModeChange(RobotMode.AUTONOMOUS);
+    logger.info ("Hi! AutonomousInit!!");
 
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
@@ -99,7 +102,7 @@ public class Robot extends TimedRobot {
     }
 
     processRobotModeChange(RobotMode.TELEOP);
-    logger.info ("Hi!");
+    logger.info ("Hi! TeleopInit!!");
   }
 
   /** This function is called periodically during operator control. */
