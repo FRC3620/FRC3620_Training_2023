@@ -8,6 +8,8 @@ import org.usfirst.frc3620.logger.EventLogging.Level;
 import org.usfirst.frc3620.misc.GitNess;
 import org.usfirst.frc3620.misc.RobotMode;
 
+import edu.wpi.first.networktables.DoubleEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -19,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * project.
  */
 public class Robot extends TimedRobot {
+
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
@@ -28,6 +31,8 @@ public class Robot extends TimedRobot {
   static private RobotMode currentRobotMode = RobotMode.INIT, previousRobotMode;
 
   Date dateAtInitialization = new Date();
+
+  DoubleEntry aEntry, bEntry, xEntry;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -41,6 +46,13 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    aEntry=NetworkTableInstance.getDefault().getDoubleTopic("/SmartDashboard/a").getEntry(0.0 );
+    bEntry=NetworkTableInstance.getDefault().getDoubleTopic("/SmartDashboard/b").getEntry(0.0 );
+    xEntry=NetworkTableInstance.getDefault().getDoubleTopic("/SmartDashboard/x").getEntry(0.0 );
+    aEntry.set(0.0);
+    bEntry.set(0.0);
+    xEntry.set(0.0);
 
   }
 
@@ -58,6 +70,11 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+
+    double a = aEntry.get();
+    double b = bEntry.get();
+    double x = a + b;
+    xEntry.set(x);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -98,10 +115,10 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    processRobotModeChange(RobotMode.TELEOP);  
-     logger.info ("Hi!");
-  }      
-    
+    processRobotModeChange(RobotMode.TELEOP);
+    logger.info("\n" + "Hello World!" + "\n" + "I feel alive!!!");
+  }
+
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {}
