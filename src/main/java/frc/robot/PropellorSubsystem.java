@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class PropellorSubsystem extends SubsystemBase {
@@ -12,11 +13,16 @@ public class PropellorSubsystem extends SubsystemBase {
 
   /** Creates a new PropellorSubsystem. */
   public PropellorSubsystem() {
-    
+    propellorMotor = new Spark(1);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+  
+  public void spinPropellor(double power){
+    propellorMotor.set(power);
+    SmartDashboard.putNumber("propellor.power", power);
   }
 }

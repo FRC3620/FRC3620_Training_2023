@@ -30,7 +30,7 @@ public class Robot extends TimedRobot {
   static private RobotMode currentRobotMode = RobotMode.INIT, previousRobotMode;
 
   Date dateAtInitialization = new Date();
-
+  
   DoubleEntry aEntry, bEntry, xEntry;
 
   /**
@@ -45,6 +45,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    logger.info ("Hi! RobotInit!!");
 
     aEntry = NetworkTableInstance.getDefault().getDoubleTopic("/SmartDashboard/a").getEntry(0.0);
     bEntry = NetworkTableInstance.getDefault().getDoubleTopic("/SmartDashboard/b").getEntry(0.0);
@@ -78,6 +79,7 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
     processRobotModeChange(RobotMode.DISABLED);
+    logger.info ("Hi! DisableInit!!");
   }
 
   @Override
@@ -88,6 +90,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     processRobotModeChange(RobotMode.AUTONOMOUS);
+    logger.info ("Hi! AutonomousInit!!");
 
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
