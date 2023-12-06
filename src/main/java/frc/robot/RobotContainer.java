@@ -66,7 +66,12 @@ public class RobotContainer {
 
   private void setupSmartDashboardCommands() {
     SmartDashboard.putData(new RunPropellorCommand(0.4));
-    // DriveSubsystem
+    SmartDashboard.putData(new ForwardAndBackCommand());
+    SmartDashboard.putData(new RunPropellorFromJoystickCommand());
+  }
+
+  public static double readSpinJoystick() {
+    return driverJoystick.getRawAxis(0);
   }
 
   SendableChooser<CommandFactory> chooser = new SendableChooser<>();
