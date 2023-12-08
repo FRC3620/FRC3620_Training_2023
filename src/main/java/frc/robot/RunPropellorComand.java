@@ -50,9 +50,8 @@ public class RunPropellorComand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    
-    RobotContainer.propellorSubsystem.spinProp(5.0);
-    return false;
+    return timer.hasElapsed (5.0);
+  
     
   }
 }
