@@ -12,6 +12,10 @@ import org.usfirst.frc3620.logger.LogCommand;
 import org.usfirst.frc3620.logger.EventLogging.Level;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -71,11 +75,33 @@ public class RobotContainer {
 
   private void setupSmartDashboardCommands() {
     // DriveSubsystem
-    SmartDashboard.putData (new RunPropellorComand (0.4));
-    SmartDashboard.putData (new ForwardAndBackCommand());
-    SmartDashboard.putData (new ForwardAndBackCommand());
-    SmartDashboard.putData (new RunPropellorFromJoystickComand());
+    SmartDashboard.putData(new RunPropellorComand(0.4));
+    SmartDashboard.putData(new ForwardAndBackCommand());
+    SmartDashboard.putData(new ForwardAndBackCommand());
+    SmartDashboard.putData(new RunPropellorFromJoystickComand());
+    SmartDashboard.putData("Sequential", new SequentialCommandGroup(
+          new WaitCommand(4.0),
+    new WaitCommand(6.0),
+    new WaitCommand(2.0)));
+    
+    SmartDashboard.putData ( "Parallel",new ParallelCommandGroup(
+            new WaitCommand(4.0),
+    new WaitCommand(6.0),
+    new WaitCommand(2.0)));
+    SmartDashboard.putData("Race" , new ParallelRaceGroup(
+          new WaitCommand(4.0),
+    new WaitCommand(6.0),
+    new WaitCommand(2.0)));
+    SmartDashboard.putData("Deadline", new ParallelCommandGroup(
+          new WaitCommand(4.0),
+    new WaitCommand(6.0),
+        new WaitCommand(2.0)));
+   
+    
+        
+    
   }
+  
 
   SendableChooser<CommandFactory> chooser = new SendableChooser<>();
   public void setupAutonomousCommands() {
