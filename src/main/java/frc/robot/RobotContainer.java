@@ -32,7 +32,7 @@ public class RobotContainer {
 
   // subsystems here
   public static PropellorSubsystem propellorSubsystem;
-
+  public static VisionSubsystem visionSubsystem;
 
   // joysticks here....
   public static Joystick driverJoystick;
@@ -52,6 +52,7 @@ public class RobotContainer {
 
   private void makeSubsystems() {
     propellorSubsystem= new PropellorSubsystem();
+    visionSubsystem=new VisionSubsystem();
   }
 
   /**
@@ -97,7 +98,7 @@ public class RobotContainer {
     new WaitCommand(6.0),
         new WaitCommand(2.0)));
    
-    
+        SmartDashboard.putData(new WBC(0));
         
     
   }
